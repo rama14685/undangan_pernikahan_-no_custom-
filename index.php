@@ -15,18 +15,20 @@ $namaPanggilanPria = "Krisna";
 $namaPanggilanWanita = "Ainun";
 
 $tanggalAcara = "2025-11-08T09:00:00";
-$waktuResepsi = "08:00 - 09:00 <br> ( lamaran ) <br> 13:00 - 15:00 <br> ( Resepsi )";
-$lokasiTeks = "Jl. Trajutrisno Raya, Semarang";
-$koordinat = "-6.979381402954114,110.39793039824535";
-$linkGoogleMaps = "https://www.google.com/maps/search/?api=1&query=" . $koordinat;
+$waktuAkad = "09:00 WIB - Selesai";
+$lokasiAkad = "Jl. Trajutrisno Raya, Semarang";
+$waktuResepsi = "13:00 - 15:00 WIB";
+$lokasiResepsi = "Jl. Trajutrisno Raya, Semarang";
+$linkGoogleMapsAkad = "https://www.google.com/maps/place/Jl.+Trajutrisno+II,+Krobokan,+Kec.+Semarang+Barat,+Kota+Semarang,+Jawa+Tengah+50141/@-6.9794566,110.3958817,17z/data=!3m1!4b1!4m6!3m5!1s0x2e708b3442ab879f:0x7732047fd75f5dc2!8m2!3d-6.9794619!4d110.3984566!16s%2Fg%2F11bwfyxbyf?authuser=0&hl=id&entry=ttu&g_ep=EgoyMDI1MDgwNi4wIKXMDSoASAFQAw%3D%3D";
+$linkGoogleMapsResepsi = "https://www.google.com/maps?q=latitude,longitude" . urlencode($lokasiResepsi);
 
 // --- Persiapan untuk Link Google Calendar ---
 date_default_timezone_set('Asia/Jakarta');
 $startTime = new DateTime('2025-11-08 09:00:00');
-$endTime = new DateTime('2025-11-08 14:00:00');
+$endTime = new DateTime('2025-11-08 15:00:00');
 $gcal_dates = $startTime->format('Ymd\THis') . '/' . $endTime->format('Ymd\THis');
 $gcal_title = urlencode("Pernikahan Krisna & Ainun");
-$gcal_location = urlencode($lokasiTeks);
+$gcal_location = urlencode($lokasiAkad);
 $gcal_link = "https://www.google.com/calendar/render?action=TEMPLATE&text={$gcal_title}&dates={$gcal_dates}&location={$gcal_location}&sf=true&output=xml";
 // --- Selesai Persiapan ---
 
@@ -77,10 +79,16 @@ $isOpened = isset($_GET['opened']) && $_GET['opened'] === 'true';
             <div class="hero-text">
                 <h1>Wedding Invitation</h1>
             </div>
+            <div class="scroll-down-container">
+                <a href="#bride-profile" class="scroll-down-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48px" height="48px"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
+                    <span>Scroll Down</span>
+                </a>
+            </div>
         </header>
 
         <main>
-            <section class="profile-section" data-aos="fade-up" style="background-image: url('foto/ainun.jpg');">
+            <section class="profile-section" id="bride-profile" data-aos="fade-up" style="background-image: url('foto/Ainun.jpg');">
                 <div class="profile-content">
                     <h3><?= $namaWanita ?></h3>
                     <p>Putri dari</p>
@@ -90,7 +98,7 @@ $isOpened = isset($_GET['opened']) && $_GET['opened'] === 'true';
 
             <div class="section-separator" data-aos="zoom-in"></div>
             
-            <section class="profile-section" data-aos="fade-up" style="background-image: url('foto/krisna.jpg');">
+            <section class="profile-section" data-aos="fade-up" style="background-image: url('foto/Krisna.jpg');">
                  <div class="profile-content">
                     <h3><?= $namaPria ?></h3>
                     <p>Putra dari</p>
@@ -106,13 +114,24 @@ $isOpened = isset($_GET['opened']) && $_GET['opened'] === 'true';
             <section class="details-section">
                 <div class="batik-accent"></div>
                 <h2 data-aos="fade-up">Save The Date</h2>
-                <div class="event-time" data-aos="fade-up" data-aos-delay="100">
-                    <p class="date"><?= date('l, d F Y', strtotime($tanggalAcara)) ?></p>
-                    <p class="time"><?= $waktuResepsi ?></p>
-                </div>
-                <div class="event-location" data-aos="fade-up" data-aos-delay="200">
-                    <p><?= $lokasiTeks ?></p>
-                    <a href="<?= $linkGoogleMaps ?>" target="_blank" class="map-button">Lihat Lokasi</a>
+                
+                <div class="event-details-container">
+                    <div class="event-card" data-aos="fade-up" data-aos-delay="100">
+                        <h3>Akad Nikah</h3>
+                        <img src="foto/masjid.png" alt="Akad Nikah" class="event-icon">
+                        <p class="date"><?= date('l, d F Y', strtotime($tanggalAcara)) ?></p>
+                        <p class="time"><?= $waktuAkad ?></p>
+                        <p class="location"><?= $lokasiAkad ?></p>
+                        <!-- <a href="<?= $linkGoogleMapsAkad ?>" target="_blank" class="map-button">Lihat Lokasi</a> -->
+                    </div>
+                    <div class="event-card" data-aos="fade-up" data-aos-delay="200">
+                        <h3>Resepsi</h3>
+                        <img src="foto/kursi.png" alt="Resepsi" class="event-icon">
+                        <p class="date"><?= date('l, d F Y', strtotime($tanggalAcara)) ?></p>
+                        <p class="time"><?= $waktuResepsi ?></p>
+                        <p class="location"><?= $lokasiResepsi ?></p>
+                        <a href="<?= $linkGoogleMapsResepsi ?>" target="_blank" class="map-button">Lihat Lokasi</a>
+                    </div>
                 </div>
             </section>
             
@@ -185,14 +204,15 @@ $isOpened = isset($_GET['opened']) && $_GET['opened'] === 'true';
                         <img src="foto/5.jpg" alt="Foto Kenangan 3">
                         <img src="foto/6.jpg" alt="Foto Kenangan 4">
                         <img src="foto/3.jpg" alt="Foto Kenangan 5">
-                        <img src="foto/7.jpg" alt="Foto Kenangan 6">
+                        <!-- <img src="foto/7.jpg" alt="Foto Kenangan 6"> -->
                     </div>
                 </div>
             </section>
             
             <section class="final-section" data-aos="fade-up">
                 <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda berkenan hadir untuk memberikan doa restu.</p>
-                <h2>Terima Kasih <br> Krisna & Ainun</h2>
+                <h2>Terima Kasih</h2>
+                <h3 class="final-couple-names"><?= $namaPanggilanPria ?> & <?= $namaPanggilanWanita ?></h3>
             </section>
         </main>
     </div>
@@ -247,6 +267,21 @@ $isOpened = isset($_GET['opened']) && $_GET['opened'] === 'true';
                 this.classList.add('active-thumbnail');
             });
         });
+
+        // Auto Scroll
+        const scrollArrow = document.querySelector('.scroll-down-arrow');
+        if (scrollArrow) {
+            scrollArrow.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
     </script>
 
 </body>
