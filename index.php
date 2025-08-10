@@ -70,6 +70,9 @@ $isOpened = isset($_GET['opened']) && $_GET['opened'] === 'true';
         <div class="cover-content">
             <p>The Wedding Of</p>
             <h1><?= $namaPanggilanPria ?> & <?= $namaPanggilanWanita ?></h1>
+            <p>Yth Tamu Undangan</p>
+            <br>
+            <br>
             <a href="?opened=true" id="open-invitation-btn" class="button">Buka Undangan</a>
         </div>
     </div>
